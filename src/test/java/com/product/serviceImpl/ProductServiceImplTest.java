@@ -16,18 +16,18 @@ class ProductServiceImplTest {
     @Autowired
     private ProductService productService;
 
-//    @Test
-//    void shouldReturnProductById() {
-//        Product product = productService.getProductById(1L);
-//        assertNotNull(product);
-//        assertEquals(1L, product.getId());
-//        assertEquals("Laptop", product.getName());
-//    }
-//
-//    @Test
-//    void shouldReturnAllProducts() {
-//        List<Product> products = productService.getAllProducts();
-//        assertFalse(products.isEmpty());
-//    }
+    @Test
+    void shouldReturnProductById() {
+        Product product = productService.getProductById(1L);
+        assertNotNull(product);
+        assertEquals(1L, product.getId());
+        assertEquals("Laptop", product.getName());
+    }
+
+    @Test
+    void shouldReturnAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        assertFalse(products.isEmpty());
+    }
 
 }
