@@ -1,4 +1,4 @@
-package serviceimpl;
+package com.product.serviceimpl;
 
 public class ProductServiceImpl {
 }

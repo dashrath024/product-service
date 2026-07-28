@@ -1,0 +1,29 @@
+name: Product Service CI #Just a name
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs: #What work should GitHub perform?
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source #checkout the code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21 #install the jav
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Grant execute permission # make the gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build project #build the project
+        run: ./gradlew build
