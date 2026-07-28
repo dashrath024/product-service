@@ -25,5 +25,14 @@ jobs: #What work should GitHub perform?
       - name: Grant execute permission # make the gradlew executable
         run: chmod +x gradlew
 
+      - name: Build + Test + Coverage
+        run: ./gradlew clean build jacocoTestReport
+
+      - name: Upload JaCoCo Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: build/reports/jacoco/test/html
+
       - name: Build project #build the project
         run: ./gradlew build
