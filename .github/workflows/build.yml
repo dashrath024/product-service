@@ -1,4 +1,4 @@
-name: Product Service CI
+name: Product Service CI #name
 
 on:
   push:
