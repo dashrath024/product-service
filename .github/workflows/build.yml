@@ -41,8 +41,8 @@ jobs:
           path: build/reports/jacoco/test/html
 
       # SonarQube Analysis
-      - name: SonarQube Analysis
-        run: |
-          ./gradlew sonar \
-            -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
-            -Dsonar.token="${{ secrets.SONAR_TOKEN }}"
+      #- name: SonarQube Analysis
+      #  run: |
+      #    ./gradlew sonar \
+      #      -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
+      #      -Dsonar.token="${{ secrets.SONAR_TOKEN }}"
