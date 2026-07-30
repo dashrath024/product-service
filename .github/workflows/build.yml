@@ -46,3 +46,6 @@ jobs:
       #    ./gradlew sonar \
       #      -Dsonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
       #      -Dsonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: Build Docker image
+        run: docker build -t product-service .
