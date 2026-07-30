@@ -48,4 +48,4 @@ jobs:
       #      -Dsonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Build Docker image
-        run: docker build -t product-service .
+        run: docker build -f docker/Dockerfile -t product-service .
