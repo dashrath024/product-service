@@ -1,6 +1,6 @@
 import org.gradle.api.tasks.testing.Test
-import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
+import org.gradle.testing.jacoco.tasks.JacocoReport
 
 plugins {
     java
@@ -26,7 +26,6 @@ repositories {
 }
 
 dependencies {
-
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -34,46 +33,38 @@ dependencies {
     // Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
-
-    // Dev tools
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-
-    // WAR deployment
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-
-    // Testing (JUnit 5 + Mockito + Spring Test)
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
+
+    // Development
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    // WAR Deployment
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+    // Testing
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-// JUnit 5
 tasks.withType<Test> {
     useJUnitPlatform()
     finalizedBy(tasks.named("jacocoTestReport"))
 }
 
-// JaCoCo version
 jacoco {
     toolVersion = "0.8.13"
 }
 
-// Generate HTML + XML coverage reports
 tasks.named<JacocoReport>("jacocoTestReport") {
-
     dependsOn(tasks.test)
 
     reports {
-        html.required.set(true)
         xml.required.set(true)
-        csv.required.set(false)
+        html.required.set(true)
     }
 }
 
-// Fail build if coverage is below 80%
 tasks.named<JacocoCoverageVerification>("jacocoTestCoverageVerification") {
-
     violationRules {
         rule {
             limit {
@@ -83,7 +74,6 @@ tasks.named<JacocoCoverageVerification>("jacocoTestCoverageVerification") {
     }
 }
 
-// Run coverage verification during `gradlew check`
 tasks.named("check") {
     dependsOn(tasks.named("jacocoTestCoverageVerification"))
 }
@@ -92,5 +82,9 @@ sonar {
     properties {
         property("sonar.projectKey", "product-service")
         property("sonar.projectName", "Product Service")
+        property(
+            "sonar.coverage.jacoco.xmlReportPaths",
+            "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml"
+        )
     }
 }
