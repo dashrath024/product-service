@@ -33,6 +33,10 @@ jobs: #What work should GitHub perform?
         with:
           name: jacoco-report
           path: build/reports/jacoco/test/html
-
+      - name: sonar analysis
+        run: ./gradlew sonar \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        
       - name: Build project #build the project
         run: ./gradlew build
