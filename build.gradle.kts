@@ -9,7 +9,7 @@ plugins {
     id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
     jacoco
-    id 'org.sonarqube' version '6.2.0.5505'
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "com.app"
@@ -86,4 +86,11 @@ tasks.named<JacocoCoverageVerification>("jacocoTestCoverageVerification") {
 // Run coverage verification during `gradlew check`
 tasks.named("check") {
     dependsOn(tasks.named("jacocoTestCoverageVerification"))
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "product-service")
+        property("sonar.projectName", "Product Service")
+    }
 }
