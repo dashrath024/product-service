@@ -60,4 +60,4 @@ jobs:
         run: docker tag product-service ${{ secrets.DOCKER_USERNAME }}/product-service:v1
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/product-service:v2
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/product-service:v3
