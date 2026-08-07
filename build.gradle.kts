@@ -4,7 +4,6 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 
 plugins {
     java
-    war
 
     id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
@@ -37,9 +36,6 @@ dependencies {
 
     // Development
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-
-    // WAR Deployment
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
