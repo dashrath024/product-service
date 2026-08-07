@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Tag Docker image
-        run: docker tag product-service ${{ secrets.DOCKER_USERNAME }}/product-service:v1
+        run: docker tag product-service ${{ secrets.DOCKER_USERNAME }}/product-service:v2
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/product-service:v3
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/product-service:v2
